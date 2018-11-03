@@ -77,4 +77,24 @@ public class Utility {
 
 	}
 
+	public boolean calculatePrimeFactors(Integer inputNumber) {
+		if (inputNumber < 0)
+			return false;
+
+		else {
+			System.out.print("Prime Factors are: ");
+			for (int i = 2; i * i <= inputNumber; i++) {
+				while (inputNumber % i == 0) {
+					System.out.print(i + " ");
+					inputNumber = inputNumber / i;
+				}
+			}
+			if (inputNumber > 1)
+				System.out.println(inputNumber + " ");
+			else
+				System.out.println();
+			return true;
+		}
+	}
+
 }
