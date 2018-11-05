@@ -97,4 +97,33 @@ public class Utility {
 		}
 	}
 
+	public boolean calculateGamblingWinPercentage(int stake, int goal, int trials) {
+		int bets = 0, wins = 0;
+
+		if ((stake <= 0) || (goal <= 0) || (goal <= stake) || (trials <= 0)) {
+			return false;
+		} 
+		else {
+			for (int t = 0; t < trials; t++) {
+
+				int cash = stake;
+				while (cash > 0 && cash < goal) {
+					bets++;
+					if (Math.random() < 0.5)
+						cash++;
+					else
+						cash--;
+				}
+				if (cash == goal)
+					wins++;
+			}
+
+			System.out.println(wins + " wins of " + trials);
+			System.out.println("Percent of games won = " + 100.0 * wins / trials);
+			System.out.println("Avg # bets           = " + 1.0 * bets / trials);
+			return true;
+		}
+
+	}
+
 }
