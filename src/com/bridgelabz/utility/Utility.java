@@ -102,8 +102,7 @@ public class Utility {
 
 		if ((stake <= 0) || (goal <= 0) || (goal <= stake) || (trials <= 0)) {
 			return false;
-		} 
-		else {
+		} else {
 			for (int t = 0; t < trials; t++) {
 
 				int cash = stake;
@@ -124,6 +123,54 @@ public class Utility {
 			return true;
 		}
 
+	}
+
+	public int findTriplets(int[] inputArray) {
+		int count = 0;
+		for (int i = 0; i < inputArray.length - 2; i++)
+			for (int j = i + 1; j < inputArray.length - 1; j++)
+				for (int k = j + 1; k < inputArray.length; k++)
+					if (inputArray[i] + inputArray[j] + inputArray[k] == 0) {
+						count++;
+						System.out.println("Triplets are: " + inputArray[i] + " " + inputArray[j] + " " + inputArray[k]);
+					}
+		return count;
+	}
+
+	public char[] bubbleSort(char[] input1) {
+		 int n = input1.length;
+	        for (int i = 0; i < n-1; i++)
+	            for (int j = 0; j < n-i-1; j++)
+	                if (input1[j] > input1[j+1])
+	                {
+	                    // swap temp and input1[i]
+	                    char temp = input1[j];
+	                    input1[j] = input1[j+1];
+	                    input1[j+1] = temp;
+	                }
+		
+		return input1;
+	}
+	
+	public Boolean checkForAnagrams(String inputString1, String inputString2) {
+		
+		//Removing Spaces and converting to LowerCase
+		String input1 = inputString1.replaceAll("\\s", "").toLowerCase();
+		String input2 = inputString2.replaceAll("\\s", "").toLowerCase();
+		
+		//Converting to char array
+		char [] charString1 = input1.toCharArray();
+		char [] charString2 = input2.toCharArray();
+		
+		//Sorting char array
+		charString1 = bubbleSort(charString1);
+		charString2 = bubbleSort(charString2);
+		
+		//Compare the 2 arrays
+		for(int i=0; i<charString1.length; i++)
+			if(charString1[i] != charString2[i])
+				return false;
+		return true;
 	}
 
 }
