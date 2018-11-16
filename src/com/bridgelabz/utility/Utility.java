@@ -1,5 +1,7 @@
 package com.bridgelabz.utility;
 
+import java.util.Scanner;
+
 public class Utility {
 
 	public String replaceMethod(String inputString, String replaceWord, String replaceWith) {
@@ -132,45 +134,78 @@ public class Utility {
 				for (int k = j + 1; k < inputArray.length; k++)
 					if (inputArray[i] + inputArray[j] + inputArray[k] == 0) {
 						count++;
-						System.out.println("Triplets are: " + inputArray[i] + " " + inputArray[j] + " " + inputArray[k]);
+						System.out
+								.println("Triplets are: " + inputArray[i] + " " + inputArray[j] + " " + inputArray[k]);
 					}
 		return count;
 	}
 
 	public char[] bubbleSort(char[] input1) {
-		 int n = input1.length;
-	        for (int i = 0; i < n-1; i++)
-	            for (int j = 0; j < n-i-1; j++)
-	                if (input1[j] > input1[j+1])
-	                {
-	                    // swap temp and input1[i]
-	                    char temp = input1[j];
-	                    input1[j] = input1[j+1];
-	                    input1[j+1] = temp;
-	                }
-		
+		int n = input1.length;
+		for (int i = 0; i < n - 1; i++)
+			for (int j = 0; j < n - i - 1; j++)
+				if (input1[j] > input1[j + 1]) {
+					// swap temp and input1[i]
+					char temp = input1[j];
+					input1[j] = input1[j + 1];
+					input1[j + 1] = temp;
+				}
+
 		return input1;
 	}
-	
+
 	public Boolean checkForAnagrams(String inputString1, String inputString2) {
-		
-		//Removing Spaces and converting to LowerCase
+
+		// Removing Spaces and converting to LowerCase
 		String input1 = inputString1.replaceAll("\\s", "").toLowerCase();
 		String input2 = inputString2.replaceAll("\\s", "").toLowerCase();
-		
-		//Converting to char array
-		char [] charString1 = input1.toCharArray();
-		char [] charString2 = input2.toCharArray();
-		
-		//Sorting char array
+
+		// Converting to char array
+		char[] charString1 = input1.toCharArray();
+		char[] charString2 = input2.toCharArray();
+
+		// Sorting char array
 		charString1 = bubbleSort(charString1);
 		charString2 = bubbleSort(charString2);
-		
-		//Compare the 2 arrays
-		for(int i=0; i<charString1.length; i++)
-			if(charString1[i] != charString2[i])
+
+		// Compare the 2 arrays
+		for (int i = 0; i < charString1.length; i++)
+			if (charString1[i] != charString2[i])
 				return false;
 		return true;
+	}
+
+	public Boolean printStockReport(Integer noOfStocks) {
+		Scanner scanner = new Scanner(System.in);
+
+		if (noOfStocks <= 0) {
+			scanner.close();
+			return false;
+		} else {
+			String[] shareNames = new String[noOfStocks];
+			Integer[] totalNumberOfShares = new Integer[noOfStocks];
+			Integer[] sharePrice = new Integer[noOfStocks];
+			Integer[] totalValueOfStocks = new Integer[noOfStocks];
+
+			for (int i = 0; i < noOfStocks; i++) {
+				System.out.print("Enter share name: ");
+				shareNames[i] = scanner.next();
+
+				System.out.print("Enter total number of shares: ");
+				totalNumberOfShares[i] = scanner.nextInt();
+
+				System.out.print("Enter price of each share: ");
+				sharePrice[i] = scanner.nextInt();
+
+				totalValueOfStocks[i] = totalNumberOfShares[i] * sharePrice[i];
+			}
+
+			for (int i = 0; i < noOfStocks; i++) {
+				System.out.println("Price Of " + shareNames[i] + " is " + totalValueOfStocks[i]);
+			}
+			scanner.close();
+			return true;
+		}
 	}
 
 }
