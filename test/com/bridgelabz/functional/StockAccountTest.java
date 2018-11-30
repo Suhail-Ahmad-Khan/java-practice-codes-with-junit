@@ -35,8 +35,6 @@ class StockAccountTest {
 		assertEquals("false", result.toString());
 	}
 	
-	
-	
 	@AfterEach
 	void tearDown() throws Exception {
 		utility = null;
